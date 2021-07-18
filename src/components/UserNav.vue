@@ -62,7 +62,8 @@ export default {
         position: relative;
     }
     .header{
-        height: 155px;
+        // height: 155px;
+        height: 20vh;
 
         &__ul{
             list-style-type: none;

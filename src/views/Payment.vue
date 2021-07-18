@@ -1,5 +1,5 @@
-<template>
-    
+<template lang="pug">
+    .header Payment
 </template>
 
 <script>

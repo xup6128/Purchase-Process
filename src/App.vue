@@ -1,7 +1,7 @@
 <template>
   <div id="app" @click="closeOptBox">
     <user-nav :optBoxActive="optBoxActive" @OptBoxIsActive="optBoxActive = true"/>
-    <HelloWorld/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   },
   components: {
     HelloWorld,
-    UserNav
+    UserNav,
+    
   },
   methods:{
     closeOptBox(){
@@ -32,8 +33,8 @@ export default {
 
 <style lang="scss">
   $main-color: #F0F0F0; //backgroundColor
-  $color1: #4C9AFF; //button
-  $color2: #0F85C5; //button__border
+  // $color1: #4C9AFF; //button
+  // $color2: #0F85C5; //button__border
 
   body{
     background-color: $main-color;
