@@ -13,15 +13,14 @@ div
     p Please enter your personal data and press continue
     .main
       .inputBox
-        lable Name 
+        label Name 
         sup * <br>
         input(v-model="Name" autofocus)
       .inputBox
-        lable Last Name
+        label Last Name
         sup * <br>
         input.gradient(v-model="LastName")
-      .button.gradient.arrow--right Continue
-    
+      .button.gradient.arrow--right(@click='nextPage') Continue
 </template>
 
 <script>
@@ -30,6 +29,11 @@ export default {
       return{
         Name: "John",
         LastName: "Doe"
+      }
+    },
+    methods:{
+      nextPage(){
+        this.$router.push({ path:'/checkout/step-2-payment'});
       }
     }
 }
@@ -88,7 +92,7 @@ $color4: rgb(62, 129, 216);
 }
 
 .container{
-  // width: 90%;
+  height: 60vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
@@ -105,13 +109,14 @@ $color4: rgb(62, 129, 216);
   }
 
   .main{
+    width: 33%;
+    @extend %margin-vertical;
 
     .inputBox{
-      width: 33%;
-      @extend %margin-vertical;
+
       text-align: left;
 
-      lable{
+      label{
         color: #596780;
         font-weight: bold;
       }
@@ -134,7 +139,7 @@ $color4: rgb(62, 129, 216);
     }
 
     .button{
-      width: 16%;
+      width: 50%;
       text-align: center;
       padding: .5em 0;
       background-color: $color1;
@@ -158,12 +163,10 @@ $color4: rgb(62, 129, 216);
       border-color: white;
       border-width: 0 3px 3px 0;
       position: absolute;
-      top: 45%;
-      right: 10%;
-      transform: rotate(315deg) translateY(-50%);
+      top: 35%;
+      right: 15%;
+      transform: rotate(315deg);
     }
   }
 }
-
-
 </style>

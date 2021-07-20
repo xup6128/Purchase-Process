@@ -13,7 +13,8 @@ import OrderConfirm from './views/OrderConfirmation.vue'
 // })
 
 export const routes = [
-    { path: '/', component: MyData},
-    { path: '/payment', component: Payment},
-    { path: '/orderConfirm', component: OrderConfirm},
+    { path: '/', redirect:'/checkout/step-1-my-data'},
+    { path: '/checkout/step-1-my-data', component: MyData},
+    { path: '/checkout/step-2-payment', component: Payment},
+    { path: '/checkout/step-3-order-confirmation', component: OrderConfirm},
 ]
