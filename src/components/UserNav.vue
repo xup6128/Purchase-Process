@@ -27,7 +27,7 @@ export default {
                 "EN",
                 "CN"
             ],
-            selected:0,
+            // selected:0,
             active: this.optBoxActive,
         };
     },
@@ -41,6 +41,16 @@ export default {
             }
         }
     },
+    computed:{
+        selected(){ //vuex取代cookies監聽語言選項
+            return this.$store.state.selected;
+        }
+    },
+    // created(){
+    //     if(this.$cookies.get('languageOpt')){
+    //         this.selected = this.$cookies.get('languageOpt');
+    //     }
+    // },
     methods:{
         showOption(){
             this.active = true;
@@ -48,7 +58,9 @@ export default {
         },
         selectOpt(num){
             this.active = false;
-            this.selected = num;
+            this.$store.commit('changeSelected', num);
+            // this.selected = num;
+            // this.$cookies.set("languageOpt", num);
         },
     }
 };
