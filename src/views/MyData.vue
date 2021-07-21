@@ -15,11 +15,11 @@ div.container
       .inputBox
         label Name 
         sup * <br>
-        input(v-model="Name" autofocus)
+        input( :value="name" autofocus)
       .inputBox
         label Last Name
         sup * <br>
-        input.gradient(v-model="LastName")
+        input.gradient( :value="lastName")
       .button.gradient.arrow--right(@click='nextPage') Continue
 </template>
 
@@ -27,13 +27,23 @@ div.container
 export default {
     data(){
       return{
-        Name: "John",
-        LastName: "Doe"
+        // name: "",
+        // lastName: "",
+      }
+    },
+    computed:{
+      name(){
+        return this.$store.state.Name;
+      },
+      lastName(){
+        return this.$store.state.LastName;
       }
     },
     methods:{
       nextPage(){
-        this.$router.push({ path:'/checkout/step-2-payment'});
+        let values = document.querySelectorAll('input')
+        this.$store.commit('setName', values);
+        this.$router.push({ path:'/checkout/step-2-payment', query:{ name: this.name, lastName: this.lastName}});
       }
     }
 }
