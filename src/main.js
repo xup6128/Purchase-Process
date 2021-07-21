@@ -20,7 +20,7 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
   state:{
-    selected: 1
+    selected: 0,
   },
   mutations:{
     changeSelected(state, opt){

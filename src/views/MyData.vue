@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div.container
   .header
     .stepBox
       .stepBox__num 1
@@ -8,7 +8,7 @@ div
     .stepBox
       .stepBox__num 2
       .stepBox__name Payment   
-  .container
+  .informBox
     .header My Data
     p Please enter your personal data and press continue
     .main
@@ -64,8 +64,9 @@ $color4: rgb(62, 129, 216);
     text-align: center;
 
     &__num{
-      width: 50px;
-      height: 50px;
+      max-width: 50px;
+      max-height: 50px;
+
       background-color: $color1;
       border: 1px solid $color2;
       border-radius: 999em;
@@ -84,20 +85,22 @@ $color4: rgb(62, 129, 216);
 
   .dashline{
     border-bottom: 1px dashed black;
-    width: 250px;
+    max-width: 250px;
+    width: 30vw;
     height: 25px;
     margin-left: 1em;
     margin-right: 1em;
   }
 }
 
-.container{
-  height: 60vh;
+.informBox{
+  min-height: 60vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
   padding: 2em;
   margin-top: 2em;
+  margin-bottom: 2em;
 
   .header{
     font-size: 2.7em;
@@ -166,6 +169,23 @@ $color4: rgb(62, 129, 216);
       top: 35%;
       right: 15%;
       transform: rotate(315deg);
+    }
+  }
+}
+
+@media (max-width: 768px) { 
+  .informBox{
+    width: 100%;
+    .main{
+      width: 80%;
+      .inputBox{
+        input{
+          width: 100%;
+        }
+      }
+      .arrow--right:after{
+        border-color: transparent;
+      }
     }
   }
 }

@@ -74,8 +74,8 @@ export default {
         position: relative;
     }
     .header{
-        // height: 155px;
         height: 20vh;
+        min-height: 150px;
 
         &__ul{
             list-style-type: none;
@@ -155,5 +155,35 @@ export default {
             background-image: url(..\assets\Icon--Flag.png);
 
         }
+    }
+    @media (max-width: 768px) { 
+        .header{
+            &__ul{
+                width: 100vw;
+                display: flex;
+                justify-content: space-between;
+                margin-right: 0;
+            }
+
+            &__li{
+                width: 100px;
+
+                &__icon{
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                &__text{
+                    font-size: .67em;
+                    line-height: 20px;
+                    margin-left: .67em;
+                    margin-right: .67em;
+                }
+
+                .arrow--down:after{
+                    border-color: transparent;
+                }
+            }
+        }
+
     }
 </style>

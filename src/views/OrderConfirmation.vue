@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div.container
   .header
     .stepBox
       .stepBox__num.stepBox__check
@@ -8,7 +8,7 @@ div
     .stepBox
       .stepBox__num.stepBox__check
       .stepBox__name Payment   
-  .container
+  .informBox
     .header {{title[language[selected]]}}
     .main
         .inform__wrap
@@ -77,6 +77,7 @@ $color6: #2D7600; //stepBox__check border
 .gradient{
   position: relative;
 }
+
 .header{
   display: flex;
   width: max-content;
@@ -87,15 +88,14 @@ $color6: #2D7600; //stepBox__check border
     text-align: center;
 
     &__num{
-      width: 50px;
-      height: 50px;
+      max-width: 50px;
+      max-height: 50px;
       background-color: $color1;
       border: 1px solid $color2;
       border-radius: 999em;
       color: white;
       font-size: 1.5em;
       line-height: 50px;
-      @extend %margin-vertical;
     }
 
     &__name{
@@ -123,19 +123,21 @@ $color6: #2D7600; //stepBox__check border
 
   .dashline{
     border-bottom: 1px dashed black;
-    width: 250px;
+    max-width: 250px;
+    width: 30vw;
     height: 25px;
     margin-left: 1em;
     margin-right: 1em;
   }
 }
-.container{
-  height: 60vh;
+.informBox{
+  min-height: 60vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
   padding: 2em;
   margin-top: 2em;
+  margin-bottom: 2em;
 
   .header{
     font-size: 2.7em;
@@ -169,6 +171,15 @@ $color6: #2D7600; //stepBox__check border
             margin-bottom: .5em;
             margin-top: 2em;
         }
+    }
+  }
+}
+@media (max-width: 768px) { 
+  .informBox{
+    width: 100%;
+    .main{
+      width: 100%;
+
     }
   }
 }
