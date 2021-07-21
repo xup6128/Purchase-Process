@@ -21,10 +21,16 @@ const router = new VueRouter({
 const store = new Vuex.Store({
   state:{
     selected: 0,
+    Name: "",
+    LastName: "",
   },
   mutations:{
     changeSelected(state, opt){
       state.selected = opt;
+    },
+    setName(state, arr){
+      state.Name = arr[0].value;
+      state.LastName = arr[1].value;
     }
   }
 })
