@@ -42,7 +42,7 @@ export default {
         }
     },
     computed:{
-        selected(){ //vuex取代cookies監聽語言選項
+        selected(){ //vuex取代下方cookies監聽語言選項
             return this.$store.state.selected;
         }
     },
