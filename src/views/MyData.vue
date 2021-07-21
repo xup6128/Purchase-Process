@@ -27,8 +27,7 @@ div.container
 export default {
     data(){
       return{
-        // name: "",
-        // lastName: "",
+
       }
     },
     computed:{

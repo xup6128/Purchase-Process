@@ -35,26 +35,24 @@ export default {
       }
     },
     computed:{
-        selected(){ //vuex監聽語言選項以及時渲染畫面
-            return this.$store.state.selected;
+        selected(){ //vuex取代cookies監聽語言選項以即時渲染畫面
+          return this.$store.state.selected;
         }
     },
     created(){
 
         orderConfirmApi()
         .then(res =>{
-            console.log(res);
-            let data = res.data;
-            // let languageOpt = this.$cookies.get('languageOpt');
-            // languageOpt = this.language[languageOpt]
+          console.log(res);
+          let data = res.data;
+          // let languageOpt = this.$cookies.get('languageOpt');
+          // languageOpt = this.language[languageOpt]
 
-            this.title = data.title;
-            this.message = data.message;
-            // this.message = this.message.replace(/\./g,".\n");
-            // console.log(this.message)
+          this.title = data.title;
+          this.message = data.message;
         })
         .catch(err =>{
-            console.log(err)
+          console.log(err)
         })
     }
 }

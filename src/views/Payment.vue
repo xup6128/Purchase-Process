@@ -34,12 +34,21 @@ export default {
           text: "You will be redirected to a secure payment platform. This is a secure process. The validation of your payment can take up to 24 hours.",
       }
     },
+    computed:{
+      name(){
+        return this.$store.state.Name;
+      },
+      lastName(){
+        return this.$store.state.LastName;
+      }
+    },
     methods:{
         nextPage(){
-            this.$router.push({ path:'/checkout/step-3-order-confirmation'});
+          //Post user info which get from Vuex to Api
+          this.$router.push({ path:'/checkout/step-3-order-confirmation'});
         },
         prePage(){
-            this.$router.push({ path:'/checkout/step-1-my-data'});
+          this.$router.push({ path:'/checkout/step-1-my-data'});
         }
     }
 }

@@ -33,8 +33,6 @@ export default {
 
 <style lang="scss">
   $main-color: #F0F0F0; //backgroundColor
-  // $color1: #4C9AFF; //button
-  // $color2: #0F85C5; //button__border
 
   body{
     background-color: $main-color;
