@@ -3,18 +3,18 @@ div.container
   .header
     .stepBox
       .stepBox__num.stepBox__check
-      .stepBox__name My Data
+      .stepBox__name {{iconOneText[selected]}}
     .dashline
     .stepBox
       .stepBox__num.stepBox__check
-      .stepBox__name Payment   
+      .stepBox__name {{iconTwoText[selected]}}
   .informBox
     .header {{title[language[selected]]}}
     .main
         .inform__wrap
             .inform__type
                 .inform__type__img
-                    img( src='../assets/OrderCreated__icon.png' alt='Credit Card' width=80 height=62.5)
+                    img.img--resp( src='../assets/OrderCreated__icon.png' alt='Credit Card' width=80 height=62.5)
             .inform__text {{message[language[selected]]}}
 </template>
 
@@ -24,6 +24,8 @@ import { orderConfirmApi } from '../api'
 export default {
     data(){
       return{
+        iconOneText:["My Data", "個人資料"],
+        iconTwoText:["Payment", "付款資訊"],
           language:[
               'en',
               'zh_CN'
@@ -90,10 +92,11 @@ $color6: #2D7600; //stepBox__check border
       max-height: 50px;
       background-color: $color1;
       border: 1px solid $color2;
-      border-radius: 999em;
+      border-radius: 25px;
       color: white;
       font-size: 1.5em;
       line-height: 50px;
+      @extend %margin-vertical;
     }
 
     &__name{
@@ -129,7 +132,7 @@ $color6: #2D7600; //stepBox__check border
   }
 }
 .informBox{
-  min-height: 60vh;
+  min-height: 65vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
@@ -153,11 +156,11 @@ $color6: #2D7600; //stepBox__check border
     .inform{
 
         &__wrap{
-            padding: 1em 2em 2em 2em;
+            padding: 1em 2em 2em;
         }
 
         &__type{
-            
+
             &__name{
                 font-size: 1.5em;
                 font-weight: bold;
@@ -177,7 +180,6 @@ $color6: #2D7600; //stepBox__check border
     width: 100%;
     .main{
       width: 100%;
-
     }
   }
 }

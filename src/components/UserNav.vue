@@ -1,15 +1,17 @@
 <template lang="pug">
 .header
     ul.header__ul
-        li.header__li
-            .header__li__icon.icon--help
-            .header__li__text HELP
-        li.header__li 
-            .header__li__icon.icon--user
-            .header__li__text SIGN IN
-        li.header__li(v-show="!active") <!--optBox啟動前-->
-            .header__li__icon.icon--flag(@click.stop="showOption")
-            .header__li__text.gradient.arrow--down(@click.stop="showOption") {{language[selected]}}
+        router-link(to="/")
+            li.header__li
+                .header__li__icon.icon--help
+                .header__li__text {{helpText[selected]}}
+        router-link(to="/")
+            li.header__li 
+                .header__li__icon.icon--user
+                .header__li__text {{SigninText[selected]}}
+        li.header__li(v-show="!active", @click.stop="showOption") <!--optBox啟動前-->
+            .header__li__icon.icon--flag
+            .header__li__text.gradient.arrow--down {{language[selected]}}
         li.header__li(v-show="active") <!--optBox啟動後-->
             .header__li__contentsWrap
                 .header__li__content(@click="selectOpt(0)")
@@ -23,13 +25,20 @@ export default {
     name: 'UserNav',
     data(){
         return{
+            helpText:["HELP", "幫助"],
+            SigninText:["SIGN IN", "登入"],
             language:[
-                "EN",
-                "CN"
+                "EN", 
+                "中文"
             ],
             // selected:0,
             active: this.optBoxActive,
         };
+    },
+    computed:{
+        selected(){
+            return this.$store.state.selected;
+        }  
     },
     props:['optBoxActive'],
     watch:{
@@ -70,6 +79,12 @@ export default {
     $color: #0080F0; //UserNav
     $icon-size: 45px;
 
+    a{
+        color: black;
+    }
+    a:hover{
+        text-decoration: none;
+    }
     .gradient{
         position: relative;
     }
@@ -88,12 +103,12 @@ export default {
 
         &__li{
             display: flex;
+            cursor: pointer;
 
             &__icon{
                 width: $icon-size;
                 height: $icon-size;
                 line-height: $icon-size;
-                cursor: pointer;
                 background-size: cover;
             }
 
@@ -102,7 +117,6 @@ export default {
                 line-height: $icon-size;
                 margin-left: 35px;
                 margin-right: 70px;
-                cursor: pointer;
             }
 
             .arrow--down:after{
@@ -120,7 +134,7 @@ export default {
 
             &__contentsWrap{
                 margin-left: 29px;
-                background-color: #FFFFFF;
+                background-color: white;
                 box-shadow: 3px 4px #B4B4B4;
             }
 

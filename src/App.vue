@@ -33,9 +33,12 @@ export default {
 
 <style lang="scss">
   $main-color: #F0F0F0; //backgroundColor
-
   body{
-    background-color: $main-color;
+    background-color: #F0F0F0 !important;
+  }
+  .img--resp{
+    max-width: 100%;
+    height: auto;
   }
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

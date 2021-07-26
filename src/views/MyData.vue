@@ -3,31 +3,37 @@ div.container
   .header
     .stepBox
       .stepBox__num 1
-      .stepBox__name My Data
+      .stepBox__name {{iconOneText[selected]}}
     .dashline
     .stepBox
       .stepBox__num 2
-      .stepBox__name Payment   
+      .stepBox__name {{iconTwoText[selected]}}
   .informBox
-    .header My Data
-    p Please enter your personal data and press continue
+    .header {{iconOneText[selected]}}
+    p {{informText[selected]}}
     .main
       .inputBox
-        label Name 
+        label {{nameText[selected]}}
         sup * <br>
         input( :value="name" autofocus)
       .inputBox
-        label Last Name
+        label {{lastNameText[selected]}}
         sup * <br>
         input.gradient( :value="lastName")
-      .button.gradient.arrow--right(@click='nextPage') Continue
+      .button.gradient.arrow--right(@click='nextPage') {{buttonText[selected]}}
 </template>
 
 <script>
 export default {
     data(){
       return{
-
+        iconOneText:["My Data", "個人資料"],
+        iconTwoText:["Payment", "付款資訊"],
+        informText:["Please enter your personal data and press continue", "請輸入您的個人資料並點擊繼續"],
+        nameText:["Name", "名字"],
+        lastNameText:["Last Name", "姓氏"],
+        buttonText:["Continue", "繼續"],
+        alertText:["Please type in your name", "請輸入您的個人資訊"]
       }
     },
     computed:{
@@ -36,11 +42,19 @@ export default {
       },
       lastName(){
         return this.$store.state.LastName;
+      },
+      selected(){
+        return this.$store.state.selected;
       }
     },
     methods:{
       nextPage(){
         let values = document.querySelectorAll('input')
+        // validation data
+        if( !values[0].value || !values[1].value){
+          alert(this.alertText[this.selected]);
+          return
+        }
         this.$store.commit('setName', values);
         this.$router.push({ path:'/checkout/step-2-payment', query:{ name: this.name, lastName: this.lastName}});
       }
@@ -78,7 +92,7 @@ $color4: rgb(62, 129, 216);
 
       background-color: $color1;
       border: 1px solid $color2;
-      border-radius: 999em;
+      border-radius: 25px;
       color: white;
       font-size: 1.5em;
       line-height: 50px;
@@ -103,7 +117,7 @@ $color4: rgb(62, 129, 216);
 }
 
 .informBox{
-  min-height: 60vh;
+  min-height: 65vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
@@ -140,7 +154,7 @@ $color4: rgb(62, 129, 216);
       input{
         width: 100%;
         border: 3px solid $color3;
-        padding: 1em .5em .5em .5em;
+        padding: 1em .5em .5em;
         border-radius: 5px;
         margin-top: 5px;
         margin-bottom: 30px;
@@ -192,6 +206,12 @@ $color4: rgb(62, 129, 216);
           width: 100%;
         }
       }
+    }
+  }
+}
+@media (max-width: 991px) { 
+  .informBox{
+    .main{
       .arrow--right:after{
         border-color: transparent;
       }

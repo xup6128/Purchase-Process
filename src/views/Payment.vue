@@ -3,26 +3,26 @@ div.container
   .header
     .stepBox
       .stepBox__num.stepBox__check
-      .stepBox__name My Data
+      .stepBox__name {{iconOneText[selected]}}
     .dashline
     .stepBox
       .stepBox__num 2
-      .stepBox__name Payment   
+      .stepBox__name {{iconTwoText[selected]}}   
   .informBox
-    .header Payment
-    p After making the payment you will receive a confirmation email with details of your purchase
+    .header {{iconTwoText[selected]}}   
+    p {{informText[selected]}}
     .main
         .inform__wrap
             .inform__type
                 .inform__type__img
-                    img( src='../assets/CreditCard__icon.png' alt='Credit Card' width=60 height=45)
-                .inform__type__name {{name}}
-            .inform__text {{text}}
+                    img.img--resp( src='../assets/CreditCard__icon.png' alt='Credit Card' width=60 height=45)
+                .inform__type__name.text-overflow-center {{name[selected]}}
+            .inform__text {{text[selected]}}
             .inform__hint
-                img( src='../assets/CreditCard__hint.png' alt='Credit Card' width=150 height=45)
+                img.img--resp( src='../assets/CreditCard__hint.png' alt='Credit Card' width=150 height=45)
         .button__wrap
-            .button.gradient.button--left(@click='prePage') Back
-            .button.gradient.button--right(@click='nextPage') Pay
+            .button.gradient.button--left(@click='prePage') {{buttonPrevText[selected]}}
+            .button.gradient.button--right(@click='nextPage') {{buttonNextText[selected]}}
     
 </template>
 
@@ -30,8 +30,16 @@ div.container
 export default {
     data(){
       return{
-          name: "Credit Card",
-          text: "You will be redirected to a secure payment platform. This is a secure process. The validation of your payment can take up to 24 hours.",
+        iconOneText:["My Data", "個人資料"],
+        iconTwoText:["Payment", "付款資訊"],
+        informText:["After making the payment you will receive a confirmation email with details of your purchase", "付款後，您將收到一封確認的電子郵件，其中包含您的購物訊息"],
+        buttonNextText:["Pay", "付款"],
+        buttonPrevText:["Back", "上一頁"],
+        name: ["Credit Card", "信用卡"],
+        text: [
+          "You will be redirected to a secure payment platform. This is a secure process. The validation of your payment can take up to 24 hours.",
+          "您將被導向至一個安全的支付平台。這是一個安全的過程。驗證您的付款最多可能需要 24 小時。"
+        ],
       }
     },
     computed:{
@@ -40,6 +48,9 @@ export default {
       },
       lastName(){
         return this.$store.state.LastName;
+      },
+      selected(){
+        return this.$store.state.selected;
       }
     },
     methods:{
@@ -71,6 +82,11 @@ $color6: #2D7600; //stepBox__check border
 .gradient{
   position: relative;
 }
+.text-overflow-center {
+  margin-left: -100%;
+  margin-right: -100%;
+  text-align: center;
+}
 .header{
   display: flex;
   width: max-content;
@@ -85,10 +101,11 @@ $color6: #2D7600; //stepBox__check border
       max-height: 50px;
       background-color: $color1;
       border: 1px solid $color2;
-      border-radius: 999em;
+      border-radius: 25px;
       color: white;
       font-size: 1.5em;
       line-height: 50px;
+      @extend %margin-vertical;
     }
 
     &__name{
@@ -125,7 +142,7 @@ $color6: #2D7600; //stepBox__check border
 }
 
 .informBox{
-  min-height: 60vh;
+  min-height: 65vh;
   background-color: white;
   border: 1px solid black;
   box-shadow: 3px 4px #B4B4B4;
@@ -150,15 +167,16 @@ $color6: #2D7600; //stepBox__check border
 
         &__wrap{
             border: 2px solid #E6E6E6;
-            padding: 1em 2em 2em 2em;
+            padding: 1em 2em 2em;
         }
 
         &__type{
             
-            &__name{
-                font-size: 1.5em;
-                font-weight: bold;
-            }
+          &__name{
+            font-size: 1.5em;
+            font-weight: bold;
+            white-space: nowrap;
+          }
         }
 
         &__text{
@@ -170,6 +188,7 @@ $color6: #2D7600; //stepBox__check border
 
     .button__wrap{
         display: flex;
+        justify-content: space-between;
         margin-top: 1.5em;
     }
 
@@ -184,34 +203,25 @@ $color6: #2D7600; //stepBox__check border
       box-shadow: 3px 4px #C0C0C0;
       cursor: pointer;
     }
+    .button:after{
+      content: "";
+      width: 13px;
+      height: 13px;
+      border-style: solid;
+      border-color: white;
+      border-width: 0 3px 3px 0;
+      position: absolute;
+      top: 35%;
+    }
     .button:hover{
       background-color: $color4;
     }
 
-    .button--right{
-        margin-left: auto;
-    }
     .button--right:after{
-      content: "";
-      width: 13px;
-      height: 13px;
-      border-style: solid;
-      border-color: white;
-      border-width: 0 3px 3px 0;
-      position: absolute;
-      top: 35%;
       right: 15%;
       transform: rotate(315deg);
     }
     .button--left:after{
-      content: "";
-      width: 13px;
-      height: 13px;
-      border-style: solid;
-      border-color: white;
-      border-width: 0 3px 3px 0;
-      position: absolute;
-      top: 35%;
       left: 15%;
       transform: rotate(135deg);
     }
